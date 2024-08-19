@@ -1,12 +1,10 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { InterestRateStrategy } from '../interfaces/interest-rate-strategy.interface';
 import { User } from '../entities/user.entity';
-import { InterestRateStrategy } from '../strategies/interest-rate-strategy.interface';
 
 @Injectable()
 export class CreditCalculationService {
-  constructor(
-    @Inject('INTEREST_RATE_STRATEGY') private readonly strategy: InterestRateStrategy
-  ) {}
+  constructor(private readonly strategy: InterestRateStrategy) {}
 
   calculateInterestRate(user: User): number {
     return this.strategy.calculate(user);

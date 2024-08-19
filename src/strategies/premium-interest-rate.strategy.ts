@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { InterestRateStrategy } from './interest-rate-strategy.interface';
+import { InterestRateStrategy } from '../interfaces/interest-rate-strategy.interface';
 import { User } from '../entities/user.entity';
 
 @Injectable()

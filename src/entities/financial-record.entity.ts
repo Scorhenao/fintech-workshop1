@@ -1,17 +1,17 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { User } from './user.entity';
 
 @Entity()
 export class FinancialRecord {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id!: string;
 
-  @Column('date')
-  date: string;
+  @Column()
+  date!: string;
 
-  @Column('decimal')
-  amount: number;
+  @Column('float')
+  amount!: number;
 
   @ManyToOne(() => User, user => user.financialRecords)
-  user: User;
+  user!: User;
 }

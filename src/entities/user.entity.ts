@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { FinancialRecord } from './financial-record.entity';
+import { Microcredit } from './microcredit.entity';
 
 @Entity()
 export class User {
@@ -9,9 +10,12 @@ export class User {
   @Column()
   name!: string;
 
-  @Column()
+  @Column('float')
   creditScore!: number;
 
-  @OneToMany(() => FinancialRecord, (record: { user: any; }) => record.user)
-  financialRecords: FinancialRecord[] | undefined;
+  @OneToMany(() => FinancialRecord, financialRecord => financialRecord.user)
+  financialRecords!: FinancialRecord[];
+
+  @OneToMany(() => Microcredit, microcredit => microcredit.user)
+  financialHistory!: Microcredit[];
 }
